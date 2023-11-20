@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Test.Calculator": {
+      "commandName": "Project",
+      "commandLineArgs": "--output=console"
+    }
+  }
+}
