@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Test.Calculator.Factories;
 using Test.Calculator.Services;
 using Test.Calculator.Services.Base;
 
@@ -12,9 +13,9 @@ namespace Test.Calculator.Providers
     {
         private readonly IOutputService _outputService;
 
-        public CalculatorProvider(IOutputService outputService)
+        public CalculatorProvider(OutputSelectionFactory outputSelectionFactory)
         {
-            _outputService = outputService;
+            _outputService = outputSelectionFactory.GetOutputService();
         }
 
         public float? Compute(float number1, float number2, OperandType operand)

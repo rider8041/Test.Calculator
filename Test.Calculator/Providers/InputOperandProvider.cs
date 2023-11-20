@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Test.Calculator.Factories;
 using Test.Calculator.Services;
 using Test.Calculator.Services.Base;
 
@@ -13,9 +14,9 @@ namespace Test.Calculator.Providers
         private readonly IOutputService _outputService;
         private readonly InputStringService _inputStringService;
 
-        public InputOperandProvider(IOutputService outputService, InputStringService inputStringService)
+        public InputOperandProvider(OutputSelectionFactory outputSelectionFactory, InputStringService inputStringService)
         {
-            _outputService = outputService;
+            _outputService = outputSelectionFactory.GetOutputService();
             _inputStringService = inputStringService;
         }
 

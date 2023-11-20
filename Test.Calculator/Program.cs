@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using Test.Calculator.Factories;
 using Test.Calculator.Providers;
 using Test.Calculator.Services;
 using Test.Calculator.Services.Base;
@@ -10,22 +13,36 @@ namespace Test.Calculator
     {
         static void Main(string[] args)
         {
-            IOutputService outputService = ProcessArguments(args);
+            var services = new ServiceCollection();
 
-            var inputStringService = new InputStringService();
-            var calculatorProvider = new CalculatorProvider(outputService);
-            var inputService = new InputFloatProvider(outputService, inputStringService);
-            var parseOperandService = new InputOperandProvider(outputService, inputStringService);
+            services.AddTransient<IOutputService, ConsoleOutputService>();
+            services.AddTransient<IOutputService, MessageBoxOutputService>();
+            services.AddTransient<IOutputService, ConsoleOutputService>();
+            services.AddTransient<InputStringService>();
+            services.AddTransient<InputFloatProvider>();
+            services.AddTransient<InputOperandProvider>();
+            services.AddTransient<CalculatorProvider>();
+            services.AddTransient<OutputSelectionFactory>();
+
+            var container = services.BuildServiceProvider();
+
+            var outputServices = container.GetServices<IOutputService>();
+            var inputFloatProvider = container.GetRequiredService<InputFloatProvider>();
+            var inputOpearndProvider = container.GetRequiredService<InputOperandProvider>();
+            var calculatorProvider = container.GetRequiredService<CalculatorProvider>();
+
+            var outputService = ProcessArguments(args, outputServices);
+
 
             outputService.Print("Test Calculator v1.0.0");
 
             outputService.Print("Enter the first number (float)");
-            var number1 = inputService.GetNumber();
+            var number1 = inputFloatProvider.GetNumber();
 
             outputService.Print("Enter the second number (float)");
-            var number2 = inputService.GetNumber();
+            var number2 = inputFloatProvider.GetNumber();
 
-            var operand = parseOperandService.GetOperand();
+            var operand = inputOpearndProvider.GetOperand();
             if (operand == OperandType.None)
             {
                 outputService.Print("Wrong operand. Goodbye!");
@@ -40,7 +57,7 @@ namespace Test.Calculator
             }
         }
 
-        private static IOutputService ProcessArguments(string[] args)
+        private static IOutputService ProcessArguments(string[] args, IEnumerable<IOutputService> services)
         {
             if (!args.Any())
             {
@@ -51,10 +68,10 @@ namespace Test.Calculator
 
             if (values[1] == "console")
             {
-                return new ConsoleOutputService();
+                return services.First(x => x.GetType() == typeof(ConsoleOutputService));
             }
 
-                return new MessageBoxOutputService();
+                return services.First(x => x.GetType() == typeof(MessageBoxOutputService));
         }
     }
 }
