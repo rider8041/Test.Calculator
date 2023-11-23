@@ -35,11 +35,6 @@ namespace Test.Calculator.Shell
             services.AddOptions<ApplicationSettings>();
             services.Configure<ApplicationSettings>(configuration.GetSection(nameof(ApplicationSettings)));
 
-            //services.AddTransient<IOperation, AdditionOperation>();
-            //services.AddTransient<IOperation, SubtractionOperation>();
-            //services.AddTransient<IOperation, MultiplicationOperation>();
-            //services.AddTransient<IOperation, DivisionOperation>();
-
             var pluginsFoler = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins");
 
             if (!Directory.Exists(pluginsFoler))
