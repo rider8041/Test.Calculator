@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,25 +15,36 @@ namespace Test.Calculator
     {
         static void Main(string[] args)
         {
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+
             var services = new ServiceCollection();
+
 
             services.AddTransient<IOutputService, ConsoleOutputService>();
             services.AddTransient<IOutputService, MessageBoxOutputService>();
+            services.AddTransient<IOutputService, FileOutputService>();
             services.AddTransient<IOutputService, ConsoleOutputService>();
+            services.AddTransient<OutputProvider>();
             services.AddTransient<InputStringService>();
             services.AddTransient<InputFloatProvider>();
             services.AddTransient<InputOperandProvider>();
             services.AddTransient<CalculatorProvider>();
             services.AddTransient<OutputSelectionFactory>();
+            services.AddOptions<ApplicationSettings>();
+            services.Configure<ApplicationSettings>(configuration.GetSection(nameof(ApplicationSettings)));
 
             var container = services.BuildServiceProvider();
+
 
             var outputServices = container.GetServices<IOutputService>();
             var inputFloatProvider = container.GetRequiredService<InputFloatProvider>();
             var inputOpearndProvider = container.GetRequiredService<InputOperandProvider>();
             var calculatorProvider = container.GetRequiredService<CalculatorProvider>();
+            var outputSelectionFactory = container.GetRequiredService<OutputSelectionFactory>();
 
-            var outputService = ProcessArguments(args, outputServices);
+            var outputService = outputSelectionFactory.GetOutputService();
 
 
             outputService.Print("Test Calculator v1.0.0");
@@ -53,25 +66,9 @@ namespace Test.Calculator
 
             if (result is not null)
             {
-                outputService.Print(result.Value.ToString());
+                var provider = container.GetRequiredService<OutputProvider>();
+                provider.Print(result.Value.ToString());
             }
-        }
-
-        private static IOutputService ProcessArguments(string[] args, IEnumerable<IOutputService> services)
-        {
-            if (!args.Any())
-            {
-                throw new ArgumentNullException(nameof(args));
-            }
-
-            var values = args[0].Split('=');
-
-            if (values[1] == "console")
-            {
-                return services.First(x => x.GetType() == typeof(ConsoleOutputService));
-            }
-
-                return services.First(x => x.GetType() == typeof(MessageBoxOutputService));
         }
     }
 }
