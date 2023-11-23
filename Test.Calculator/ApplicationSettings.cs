@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test.Calculator
+namespace Test.Calculator.Shell
 {
     public class ApplicationSettings
     {

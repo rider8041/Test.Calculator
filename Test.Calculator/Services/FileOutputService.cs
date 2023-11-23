@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Test.Calculator.Services.Base;
 
-namespace Test.Calculator.Services
+namespace Test.Calculator.Shell.Services
 {
     public class FileOutputService : OutputServiceBase
     {

@@ -3,7 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Calculator", "Test.Calculator\Test.Calculator.csproj", "{ED58F022-626E-48BD-8472-31C44896CF2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Calculator.Shell", "Test.Calculator\Test.Calculator.Shell.csproj", "{ED58F022-626E-48BD-8472-31C44896CF2F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Operations", "Operations", "{4524153D-D984-42A2-B484-5A07335C1C5E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Calculator.Contracts", "Test.Calculator.Contracts\Test.Calculator.Contracts.csproj", "{B87AF45E-F9BC-4B99-AB2F-545FB8B056E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Calculator.AdditionOperation", "Test.Calculator.AdditionOperation\Test.Calculator.AdditionOperation.csproj", "{02F58E1B-6CA9-476B-A06B-7E41E159DA50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Calculator.SubtractionOperation", "Test.Calculator.SubtractionOperation\Test.Calculator.SubtractionOperation.csproj", "{D19FFB5D-1516-409D-983B-97C791F5FB64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Calculator.MultiplicationOperation", "Test.Calculator.MultiplicationOperation\Test.Calculator.MultiplicationOperation.csproj", "{9EE47BA1-9634-4CB8-A397-5FA82549E33A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Calculator.DivisionOperation", "Test.Calculator.DivisionOperation\Test.Calculator.DivisionOperation.csproj", "{B10C4C65-2478-48BD-AA7F-2A3435EFB66D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Calculator.ExponentialOperation", "Test.Calculator.ExponentialOperation\Test.Calculator.ExponentialOperation.csproj", "{D83C3ED1-F26A-4EA3-B825-F7378CC7C0FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +29,40 @@ Global
 		{ED58F022-626E-48BD-8472-31C44896CF2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED58F022-626E-48BD-8472-31C44896CF2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED58F022-626E-48BD-8472-31C44896CF2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B87AF45E-F9BC-4B99-AB2F-545FB8B056E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B87AF45E-F9BC-4B99-AB2F-545FB8B056E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B87AF45E-F9BC-4B99-AB2F-545FB8B056E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B87AF45E-F9BC-4B99-AB2F-545FB8B056E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02F58E1B-6CA9-476B-A06B-7E41E159DA50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02F58E1B-6CA9-476B-A06B-7E41E159DA50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02F58E1B-6CA9-476B-A06B-7E41E159DA50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02F58E1B-6CA9-476B-A06B-7E41E159DA50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D19FFB5D-1516-409D-983B-97C791F5FB64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D19FFB5D-1516-409D-983B-97C791F5FB64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D19FFB5D-1516-409D-983B-97C791F5FB64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D19FFB5D-1516-409D-983B-97C791F5FB64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EE47BA1-9634-4CB8-A397-5FA82549E33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EE47BA1-9634-4CB8-A397-5FA82549E33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EE47BA1-9634-4CB8-A397-5FA82549E33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EE47BA1-9634-4CB8-A397-5FA82549E33A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B10C4C65-2478-48BD-AA7F-2A3435EFB66D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B10C4C65-2478-48BD-AA7F-2A3435EFB66D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B10C4C65-2478-48BD-AA7F-2A3435EFB66D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B10C4C65-2478-48BD-AA7F-2A3435EFB66D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D83C3ED1-F26A-4EA3-B825-F7378CC7C0FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D83C3ED1-F26A-4EA3-B825-F7378CC7C0FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D83C3ED1-F26A-4EA3-B825-F7378CC7C0FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D83C3ED1-F26A-4EA3-B825-F7378CC7C0FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02F58E1B-6CA9-476B-A06B-7E41E159DA50} = {4524153D-D984-42A2-B484-5A07335C1C5E}
+		{D19FFB5D-1516-409D-983B-97C791F5FB64} = {4524153D-D984-42A2-B484-5A07335C1C5E}
+		{9EE47BA1-9634-4CB8-A397-5FA82549E33A} = {4524153D-D984-42A2-B484-5A07335C1C5E}
+		{B10C4C65-2478-48BD-AA7F-2A3435EFB66D} = {4524153D-D984-42A2-B484-5A07335C1C5E}
+		{D83C3ED1-F26A-4EA3-B825-F7378CC7C0FE} = {4524153D-D984-42A2-B484-5A07335C1C5E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A76489BA-3013-45D3-882E-8BA75386C5E0}

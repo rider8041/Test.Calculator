@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test.Calculator.Services.Base
+namespace Test.Calculator.Shell.Services.Base
 {
     public interface IOutputService
     {

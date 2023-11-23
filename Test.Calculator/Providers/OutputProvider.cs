@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Test.Calculator.Services.Base;
+using Test.Calculator.Shell.Services.Base;
 
 namespace Test.Calculator.Providers
 {

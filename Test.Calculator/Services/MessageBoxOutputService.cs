@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Test.Calculator.Services.Base;
 
-namespace Test.Calculator.Services
+namespace Test.Calculator.Shell.Services
 {
     public class MessageBoxOutputService : OutputServiceBase
     {

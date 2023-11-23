@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Test.Calculator.Services;
-using Test.Calculator.Services.Base;
+using Test.Calculator.Shell;
+using Test.Calculator.Shell.Services;
+using Test.Calculator.Shell.Services.Base;
 
-namespace Test.Calculator.Factories
+namespace Test.Calculator.Shell.Factories
 {
     public class OutputSelectionFactory
     {

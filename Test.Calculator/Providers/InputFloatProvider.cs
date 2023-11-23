@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Test.Calculator.Factories;
-using Test.Calculator.Services;
-using Test.Calculator.Services.Base;
+using Test.Calculator.Shell.Factories;
+using Test.Calculator.Shell.Services;
+using Test.Calculator.Shell.Services.Base;
 
 namespace Test.Calculator.Providers
 {

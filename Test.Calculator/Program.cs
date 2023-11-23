@@ -4,44 +4,23 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Test.Calculator.Factories;
 using Test.Calculator.Providers;
 using Test.Calculator.Services;
 using Test.Calculator.Services.Base;
+using Test.Calculator.Shell.Factories;
 
-namespace Test.Calculator
+namespace Test.Calculator.Shell
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            var configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .Build();
 
-            var services = new ServiceCollection();
+            var container = DependencyContainer.GetContainer();
 
 
-            services.AddTransient<IOutputService, ConsoleOutputService>();
-            services.AddTransient<IOutputService, MessageBoxOutputService>();
-            services.AddTransient<IOutputService, FileOutputService>();
-            services.AddTransient<IOutputService, ConsoleOutputService>();
-            services.AddTransient<OutputProvider>();
-            services.AddTransient<InputStringService>();
-            services.AddTransient<InputFloatProvider>();
-            services.AddTransient<InputOperandProvider>();
-            services.AddTransient<CalculatorProvider>();
-            services.AddTransient<OutputSelectionFactory>();
-            services.AddOptions<ApplicationSettings>();
-            services.Configure<ApplicationSettings>(configuration.GetSection(nameof(ApplicationSettings)));
-
-            var container = services.BuildServiceProvider();
-
-
-            var outputServices = container.GetServices<IOutputService>();
             var inputFloatProvider = container.GetRequiredService<InputFloatProvider>();
             var inputOpearndProvider = container.GetRequiredService<InputOperandProvider>();
-            var calculatorProvider = container.GetRequiredService<CalculatorProvider>();
             var outputSelectionFactory = container.GetRequiredService<OutputSelectionFactory>();
 
             var outputService = outputSelectionFactory.GetOutputService();
@@ -55,20 +34,15 @@ namespace Test.Calculator
             outputService.Print("Enter the second number (float)");
             var number2 = inputFloatProvider.GetNumber();
 
-            var operand = inputOpearndProvider.GetOperand();
-            if (operand == OperandType.None)
+            var operation = inputOpearndProvider.GetOperand();
+            if (operation == null)
             {
                 outputService.Print("Wrong operand. Goodbye!");
                 return;
             }
 
-            var result = calculatorProvider.Compute(number1, number2, operand);
-
-            if (result is not null)
-            {
-                var provider = container.GetRequiredService<OutputProvider>();
-                provider.Print(result.Value.ToString());
-            }
+            var result = operation.Execute(number1, number2);
+            outputService.Print(result.ToString());
         }
     }
 }
